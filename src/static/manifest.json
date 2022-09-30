@@ -4,9 +4,9 @@
   "description": "React, Webpack extension",
   "version": "1.0.0",
   "icons": {
-    "16": "./resources/icon.png",
-    "48": "./resources/icon.png",
-    "128": "./resources/icon.png"
+    "16": "./static/icon.png",
+    "48": "./static/icon.png",
+    "128": "./static/icon.png"
   },
   "action": {
     "default_title": "Click me",
