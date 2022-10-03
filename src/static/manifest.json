@@ -3,6 +3,7 @@
   "name": "React.JS Webpack",
   "description": "React, Webpack extension",
   "version": "1.0.0",
+  "options_page": "options.html",
   "icons": {
     "16": "./static/icon.png",
     "48": "./static/icon.png",
@@ -11,5 +12,15 @@
   "action": {
     "default_title": "Click me",
     "default_popup": "popup.html"
-  }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.google.com/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "permissions": ["bookmarks", "tabs"]
 }

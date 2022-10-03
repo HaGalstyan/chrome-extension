@@ -4,10 +4,14 @@ const HtmlPlugin = require("html-webpack-plugin");
 const tailwindcss = require("tailwindcss");
 const autoprefixer = require("autoprefixer");
 
+/** @type {import('webpack').Configuration} */
 module.exports = {
   mode: "development",
   entry: {
     popup: path.resolve("./src/popup/popup.tsx"),
+    options: path.resolve("./src/options/options.tsx"),
+    background: path.resolve("./src/background/background.ts"),
+    contentScript: path.resolve("./src/contentScript/contentScript.ts"),
   },
   devtool: "cheap-module-source-map",
   module: {
@@ -33,6 +37,11 @@ module.exports = {
         ],
         test: /\.css$/i,
       },
+      {
+        type: "asset/resource",
+        use: "asset/resource",
+        test: /\.(png|svg|jpg|jpeg|gif|)$/i,
+      },
     ],
   },
   plugins: [
@@ -50,12 +59,14 @@ module.exports = {
         },
       ],
     }),
-    new HtmlPlugin({
-      title: "React.JS Webpack Extension",
-      filename: "popup.html",
-      chunks: ["popup"],
-    }),
+    ...getHTMLPlugins(["popup", "options"]),
   ],
+  optimization: {
+    splitChunks: {
+      // include all types of chunks
+      chunks: "all",
+    },
+  },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
   },
@@ -63,3 +74,14 @@ module.exports = {
     filename: "[name].js",
   },
 };
+
+function getHTMLPlugins(chunks) {
+  return chunks.map(
+    (chunk) =>
+      new HtmlPlugin({
+        title: "React Extension",
+        filename: `${chunk}.html`,
+        chunks: [chunk],
+      })
+  );
+}

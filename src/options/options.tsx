@@ -5,8 +5,7 @@ import "../assets/tailwind.css";
 const Test = () => {
   return (
     <div>
-      <h1 className="text-3xl text-green-500 ">TEST</h1>
-      <img src="./static/icon.png" alt="This is img" />
+      <h1 className="text-3xl text-green-500 ">Options</h1>
     </div>
   );
 };
