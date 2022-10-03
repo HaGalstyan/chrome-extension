@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack",
     "clean": "rm -rf dist",
-    "watch": "npm run clean; webpack --watch --progress --config webpack.config.js",
+    "watch": "npm run clean; webpack --watch --progress --config webpack.dev.js",
     "build": "webpack --progress --config webpack.prod.js"
   },
   "keywords": [],
@@ -31,6 +31,7 @@
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.1.8",
     "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
+    "webpack-cli": "^4.10.0",
+    "webpack-merge": "^5.8.0"
   }
 }
